@@ -4,7 +4,7 @@ since it was manually entered. Print out the details of any produce that has in 
 as well as the calculated total that shows the discrepancy.
 '''
 
-ProduceDictionary={
+ProduceDictionary = {
     'Potatoes': {
         'cost': 0.86,
         'amt_sold': 39.8,
@@ -207,3 +207,27 @@ ProduceDictionary={
     }
 }
 
+
+Produce_file = open("Produce_file", "w")
+
+for key in ProduceDictionary:  # prints only the string version
+    if ProduceDictionary[key]["cost"] * ProduceDictionary[key]["amt_sold"] != ProduceDictionary[key]["total"]:
+        print(
+            f"Produce Name: {ProduceDictionary[key]}, Calculated Total: {ProduceDictionary[key]['cost'] * ProduceDictionary[key]['amt_sold']:7,.2f}, Stated Total: {ProduceDictionary[key]['total']}\n")
+
+
+Produce_file.close()
+
+
+# answer
+for produce, details_dictionary in ProduceDictionary.items():
+    cost = details_dictionary['cost']
+    amt_sold = details_dictionary['amt_sold']
+    stated_total = details_dictionary['total']
+
+    calc_total = round(cost * amt_sold, 2)
+
+    if stated_total != calc_total:
+        print(f"produce name: {produce}")
+        print(f"Calc total: ${calc_total}")
+        print(f"Stated total: {stated_total}")

@@ -16,34 +16,45 @@ room-number,use,sq-ft,price
 '''
 
 
-
-
-datastore = { "medical":[
-      { "room-number": 100,
-        "use": "reception",
+datastore = {"medical": [
+    {"room-number": 100,
+     "use": "reception",
         "sq-ft": 50,
         "price": 75
-      },
-      { "room-number": 101,
-        "use": "waiting",
+     },
+    {"room-number": 101,
+     "use": "waiting",
         "sq-ft": 250,
         "price": 75
-      },
-      { "room-number": 102,
-        "use": "examination",
+     },
+    {"room-number": 102,
+     "use": "examination",
         "sq-ft": 125,
         "price": 150
-      },
-      { "room-number": 103,
-        "use": "examination",
+     },
+    {"room-number": 103,
+     "use": "examination",
         "sq-ft": 125,
         "price": 150
-      },
-      { "room-number": 104,
-        "use": "office",
+     },
+    {"room-number": 104,
+     "use": "office",
         "sq-ft": 150,
         "price": 100
-      }
+     }
 
-      ]
+]
 }
+
+
+retail_space = open("retail_space.csv", "w")
+
+retail_space.write("room-number,use,sq-ft,price\n")
+
+
+for value in datastore["medical"]:# datastore["medical"] this is a list so it is iterable; each iteration (value) is one dictionary
+    retail_space.write(
+        f"{value['room-number']}, {value['use']}, {value['sq-ft']}, {value['price']}\n") #breaking each value iteration down
+
+
+retail_space.close()
